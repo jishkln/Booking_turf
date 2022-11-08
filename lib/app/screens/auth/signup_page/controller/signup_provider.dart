@@ -5,8 +5,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:truff_majestic/app/core/services/authentication_service.dart';
 import 'package:truff_majestic/app/screens/auth/login_page/view/pin_put.dart';
-import 'package:truff_majestic/app/screens/home/home.dart';
-import 'package:truff_majestic/app/screens/pages/auth/signup_page/model/signup_model.dart';
+import 'package:truff_majestic/app/screens/auth/signup_page/model/signup_model.dart';
+import 'package:truff_majestic/app/screens/home/view/home.dart';
 
 class SignupProvider extends ChangeNotifier {
   bool isEmail = true;

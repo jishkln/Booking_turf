@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
  import 'package:provider/provider.dart';
 import 'package:truff_majestic/app/screens/auth/login_page/view/login_email.dart';
-import 'package:truff_majestic/app/screens/pages/auth/signup_page/controller/signup_provider.dart';
+import 'package:truff_majestic/app/screens/auth/signup_page/controller/signup_provider.dart'; 
 import 'package:truff_majestic/app/screens/shared/coustem_card.dart';
 import 'package:truff_majestic/app/screens/shared/coustum_boutten.dart';
 import 'package:truff_majestic/app/screens/shared/coustum_textfield.dart';
@@ -46,7 +46,7 @@ class SignUp extends StatelessWidget {
                     context,
                     MaterialPageRoute(builder: (context) => const LoginEmail()),
                   );
-                  log(signupController.signupKey.hashCode.toString());
+                  log("SignUp :${signupController.signupKey.hashCode.toString()}");
                 },
               ),
             ),

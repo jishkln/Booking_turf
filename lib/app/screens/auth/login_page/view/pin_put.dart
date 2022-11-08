@@ -1,12 +1,12 @@
- import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
-  import 'package:truff_majestic/app/screens/pages/auth/signup_page/controller/signup_provider.dart';
+import 'package:truff_majestic/app/screens/auth/signup_page/controller/signup_provider.dart';
 import 'package:truff_majestic/app/screens/shared/themes.dart';
 import 'package:truff_majestic/app/utils/constants/color_constants.dart';
 import 'package:truff_majestic/app/utils/constants/size_constants.dart';
+import 'package:truff_majestic/app/utils/navigation.dart';
 
 class Otp extends StatelessWidget {
   const Otp({super.key, required this.isEmail});
@@ -23,7 +23,7 @@ class Otp extends StatelessWidget {
           elevation: 0,
           leading: IconButton(
               onPressed: () {
-                Get.back();
+                NavigationServices.back();
               },
               icon: const Icon(Icons.arrow_back_ios)),
         ),

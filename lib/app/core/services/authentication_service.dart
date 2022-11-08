@@ -1,11 +1,9 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
- import 'package:truff_majestic/app/core/services/api_endpoints.dart';
+import 'package:truff_majestic/app/core/services/api_endpoints.dart';
 import 'package:truff_majestic/app/core/services/dio_error_exce.dart';
 import 'package:truff_majestic/app/screens/auth/login_page/model/login_model.dart';
-import 'package:truff_majestic/app/screens/auth/login_page/model/numberlogin.dart'; 
-import 'package:truff_majestic/app/screens/pages/auth/signup_page/model/signup_model.dart';
+import 'package:truff_majestic/app/screens/auth/login_page/model/numberlogin.dart';
+import 'package:truff_majestic/app/screens/auth/signup_page/model/signup_model.dart';
 
 class AuthenticationService {
   final Dio _dio = Dio(BaseOptions(baseUrl: EndPoints.baseUrl));
@@ -66,8 +64,8 @@ class AuthenticationService {
     try {
       Response response =
           await _dio.post(EndPoints.loginPhone, data: phoneNumberM.toJson());
-      log(response.data.toString());
-      if (response.statusCode == 201) {
+      // log(response.data.toString());
+      if (response.statusCode! >= 200 && response.statusCode! <= 299) {
         return LoginNumberResponesM.fromJson(response.data);
       }
     } on DioError catch (e) {
@@ -79,6 +77,7 @@ class AuthenticationService {
   }
 
 //=======================verify phone Otp===================
+
   Future<LoginNumberOtpResponesM?> verifyNumberOtp(
       PhoneNumberVerifyM phoneNumberVerifyM) async {
     try {

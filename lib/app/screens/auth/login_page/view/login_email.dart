@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:truff_majestic/app/screens/auth/login_page/controller/login_provider.dart';
- import 'package:truff_majestic/app/screens/pages/auth/login_page/view/login_phone.dart';
-import 'package:truff_majestic/app/screens/pages/auth/signup_page/view/signup.dart';
+import 'package:truff_majestic/app/screens/auth/login_page/view/login_phone.dart';
+import 'package:truff_majestic/app/screens/auth/signup_page/view/signup.dart';
 import 'package:truff_majestic/app/screens/shared/coustem_card.dart';
 import 'package:truff_majestic/app/screens/shared/coustum_boutten.dart';
 import 'package:truff_majestic/app/screens/shared/coustum_textfield.dart';
@@ -12,7 +12,7 @@ import 'package:truff_majestic/app/screens/shared/themes.dart';
 import 'package:truff_majestic/app/utils/constants/color_constants.dart';
 import 'package:truff_majestic/app/utils/constants/images.dart';
 import 'package:truff_majestic/app/utils/constants/size_constants.dart';
- 
+
 class LoginEmail extends StatelessWidget {
   const LoginEmail({super.key});
 
@@ -41,7 +41,6 @@ class LoginEmail extends StatelessWidget {
                 text: 'Don\'t have an account? \t',
                 buttonName: 'Sign Up',
                 onClick: () {
-                 
                   // Routes.push(screen: const SignUp());
                   Navigator.push(
                     context,

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 
 class DioException implements Exception {
@@ -42,7 +44,7 @@ class DioException implements Exception {
       case 403:
         return 'The authenticated user is not allowed to access the specified API endpoint.';
       case 404:
-        return 'User already registered';
+        return 'Page not fount (404)';
       case 405:
         return 'Method not allowed. Please check the Allow header for the allowed HTTP methods.';
       case 415:
@@ -60,4 +62,16 @@ class DioException implements Exception {
 
   @override
   String toString() => errorMessage;
+}
+
+Future<bool> loockingChange() async {
+  try {
+    final result = await InternetAddress.lookup('example.com');
+    if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+      return true;
+    }
+    return false;
+  } on SocketException catch (_) {
+    return false;
+  }
 }

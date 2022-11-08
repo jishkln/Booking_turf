@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -9,7 +7,8 @@ import 'package:truff_majestic/app/core/services/authentication_service.dart';
 import 'package:truff_majestic/app/screens/auth/login_page/model/login_model.dart';
 import 'package:truff_majestic/app/screens/auth/login_page/model/numberlogin.dart';
 import 'package:truff_majestic/app/screens/auth/login_page/view/phone_pin.dart';
-import 'package:truff_majestic/app/screens/home/home.dart'; 
+import 'package:truff_majestic/app/screens/home/view/home.dart';
+import 'package:truff_majestic/app/utils/navigation.dart';
 
 class LoginProvider extends ChangeNotifier {
   bool isLoading = false;
@@ -33,9 +32,7 @@ class LoginProvider extends ChangeNotifier {
 
   //=============emaiLogin===============
 
-  void emailLogin(BuildContext context, [bool mountted = true]) async {
-
-    
+  void emailLogin(BuildContext context) async {
     isLoading = true;
     notifyListeners();
     if (!formKeyEmail.currentState!.validate()) {
@@ -53,26 +50,36 @@ class LoginProvider extends ChangeNotifier {
     }
     EmailLoginRespones? response = await AuthenticationService()
         .loginEmail(EmailLoginM(email: email, passwrd: password));
+    if (response?.status == true) {
+      await dataStorage.write(key: "token", value: response?.token);
+      await dataStorage.write(key: "login", value: "true");
+      await dataStorage.write(
+          key: "refreshToken", value: response?.refreshToken);
 
-    if (response!.error == true) {
-      dataStorage.write(key: "refreshToken", value: response.refreshToken);
-      dataStorage.write(key: "token", value: response.token);
-      dataStorage.write(key: "login", value: "true");
-      await dataStorage.write(key: "id", value: response.id.toString());
-      
+      String? id = await dataStorage.read(key: "token");
+      log("login Provider tocken: $id");
+    }
+    if (response?.error == true) {
+      await dataStorage.write(key: "id", value: response?.id.toString());
 
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: ((context) => const Home()),
-        ),
-      );
+      // Navigator.of(context).pushAndRemoveUntil(
+      //     MaterialPageRoute(builder: (context) => const Home()),
+      //     (route) => false);
+      NavigationServices.pushRemoveUntil(screen: const Home());
+
+      // Navigator.pushAndRemoveUntil(
+      //   context,
+      //   MaterialPageRoute(
+      //     builder: ((context) => const Home()),
+      //   ),
+      // );
       isLoading = false;
       notifyListeners();
     } else {
       isLoading = false;
       notifyListeners();
-      Fluttertoast.showToast(msg: response.message.toString());
+      Fluttertoast.showToast(
+          msg: response?.message.toString() ?? "Some thing??????");
     }
   }
 
@@ -83,7 +90,7 @@ class LoginProvider extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
     int? numbr = int.parse(phoneControlller.text);
-    log("Login provider Phone $numbr");
+    log("Login provider Phone: $numbr");
     if (!formKeyPhone.currentState!.validate()) {
       isLoading = false;
       notifyListeners();
@@ -103,11 +110,12 @@ class LoginProvider extends ChangeNotifier {
       await dataStorage.write(key: "id", value: response?.id ?? '');
       await dataStorage.write(key: "user_number", value: numbr.toString());
       Fluttertoast.showToast(msg: response?.message ?? 'Done Sucesss');
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const OtpPhone(),
-          ));
+      // Navigator.push(
+      //     context,
+      //     MaterialPageRoute(
+      //       builder: (context) => const OtpPhone(),
+      //     ));
+      NavigationServices.push(screen: const OtpPhone());
 
       isLoading = false;
       otpVerify = true;
@@ -146,11 +154,12 @@ class LoginProvider extends ChangeNotifier {
       dataStorage.write(key: "refreshToken", value: response!.refreshToken);
       dataStorage.write(key: "token", value: response.token);
       //navi
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const Home(),
-          ));
+      // Navigator.push(
+      //     context,
+      //     MaterialPageRoute(
+      //       builder: (context) => const Home(),
+      //     ));
+      NavigationServices.push(screen: const Home());
 
       dataStorage.write(key: "login", value: "true");
       isLoading = false;

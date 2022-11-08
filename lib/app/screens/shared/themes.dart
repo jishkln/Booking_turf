@@ -24,6 +24,11 @@ class TurffTheme {
       fontWeight: FontWeight.w600,
       color: subTextColor,
     ),
+    headline4: GoogleFonts.robotoSlab(
+      fontSize: 32.0,
+      fontWeight: FontWeight.w600,
+      color: subTextColor,
+    ),
     headline6: GoogleFonts.robotoSlab(
       fontSize: 20.0,
       fontWeight: FontWeight.w600,
@@ -37,7 +42,7 @@ class TurffTheme {
       color: Colors.white,
     ),
     headline1: GoogleFonts.robotoSlab(
-      fontSize: 32.0,
+      fontSize: 38.0,
       fontWeight: FontWeight.bold,
       color: Colors.white,
     ),
@@ -52,10 +57,10 @@ class TurffTheme {
       color: Colors.white,
     ),
     headline6: GoogleFonts.robotoSlab(
-      fontSize: 20.0,
-      fontWeight: FontWeight.w600,
-      color: Colors.white,
-    ),
+        fontSize: 20.0,
+        fontWeight: FontWeight.w600,
+        color: Colors.white,
+        decorationStyle: TextDecorationStyle.dotted),
   );
   static ThemeData light() {
     return ThemeData(

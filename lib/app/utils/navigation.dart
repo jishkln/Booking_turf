@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-class Routes {
-  static final navigatorKey = GlobalKey<NavigatorState>();
+class NavigationServices {
+  static final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey<NavigatorState>();
 
   static push({required var screen}) {
     navigatorKey.currentState?.push(
@@ -11,7 +12,7 @@ class Routes {
     );
   }
 
-  static back(){
+  static back() {
     navigatorKey.currentState?.pop();
   }
 
