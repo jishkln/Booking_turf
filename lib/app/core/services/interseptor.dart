@@ -8,6 +8,7 @@ import 'package:truff_majestic/app/core/services/dio_error_exce.dart';
 
 class InterceptorHelper {
   FlutterSecureStorage dataStorage = const FlutterSecureStorage();
+  
   Dio dio = Dio(BaseOptions(baseUrl: EndPoints.baseUrl));
   Future<Dio> getApiClient() async {
     dio.interceptors.add(

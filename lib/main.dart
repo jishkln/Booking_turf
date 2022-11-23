@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:truff_majestic/app/screens/auth/signup_page/controller/signup_provider.dart';
+import 'package:truff_majestic/app/screens/booking/controller/booking_provider.dart';
 import 'package:truff_majestic/app/screens/home/controller/home_view.dart';
 import 'package:truff_majestic/app/screens/home/controller/geolocator.dart';
 import 'package:truff_majestic/app/screens/home/view/bottumNavi/widget/controller.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
     final theme = TurffTheme.light();
     return MultiProvider(
       providers: [
+       
         ChangeNotifierProvider(
           create: (_) => CoustomScrollProvider(),
         ),
@@ -43,6 +45,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => LocationProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => BookingProvider(),
         ),
       ],
       child: MaterialApp(

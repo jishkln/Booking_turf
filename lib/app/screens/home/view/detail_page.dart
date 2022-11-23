@@ -2,6 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
+import 'package:truff_majestic/app/screens/booking/controller/booking_provider.dart';
+import 'package:truff_majestic/app/screens/booking/view/booking.dart';
 import 'package:truff_majestic/app/screens/home/controller/home_view.dart';
 import 'package:truff_majestic/app/screens/home/model/home_model.dart';
 import 'package:truff_majestic/app/screens/shared/coustum_boutten.dart';
@@ -9,6 +11,7 @@ import 'package:truff_majestic/app/screens/shared/themes.dart';
 import 'package:truff_majestic/app/utils/constants/color_constants.dart';
 import 'package:truff_majestic/app/utils/constants/size_constants.dart';
 import 'package:truff_majestic/app/utils/initsatate.dart';
+import 'package:truff_majestic/app/utils/navigation.dart';
 
 class DetailPage extends StatelessWidget {
   const DetailPage({
@@ -21,12 +24,16 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final provider = Provider.of<HomeViewProvider>(context, listen: false);
+    final providerBK = Provider.of<BookingProvider>(context);
+
     return StatefulWrapper(
       onInit: () {
         /// provider.catogry();
         provider.trufImg(data);
         provider.catogry(data);
         provider.trufAvailabile(data);
+//============Booking slots================
+        providerBK.times;
       },
       child: SafeArea(
         child: Scaffold(
@@ -147,7 +154,33 @@ class DetailPage extends StatelessWidget {
                             "Book",
                             style: TurffTheme.darkTextTheme.headline2,
                           ),
-                          onTap: () {})
+                          onTap: () {
+                            NavigationServices.push(
+                                screen: BookingPage(
+                              bookingData: data,
+                            ));
+
+                            providerBK.timing(data);
+                            providerBK.bookingDayTime(
+                                providerBK.times[0],
+                                providerBK.times[1],
+                                providerBK.morningTime,
+                                '');
+                            providerBK.bookingDayTime(
+                                providerBK.times[2],
+                                providerBK.times[3],
+                                providerBK.afternoonTime,
+                                ' ');
+                            providerBK.bookingDayTime(
+                                providerBK.times[4],
+                                providerBK.times[5],
+                                providerBK.eveningTime,
+                                '  ');
+                            providerBK.selectedTime.clear();
+                            providerBK.allReadyBooked(data.id);
+                            providerBK.totalPrice = 0;
+                            providerBK.sendToBackend.clear();
+                          })
                     ],
                   )),
             ],

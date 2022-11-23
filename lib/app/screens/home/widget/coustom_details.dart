@@ -72,7 +72,10 @@ class CoustomContainerWidget extends StatelessWidget {
               width: size.width,
               child: IconButton(
                 onPressed: () {},
-                icon: const Icon(Icons.favorite),
+                icon: const Icon(
+                  Icons.favorite,
+                  color: greyColor,
+                ),
               ),
             ),
           ),

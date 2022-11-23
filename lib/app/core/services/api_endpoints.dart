@@ -7,4 +7,6 @@ class EndPoints {
   static String verifyPhone = "/account/verify-number-otp";
   static String nearByTruf = "/user/nearest-turf/";
   static String viewAll = "/user/all-turf/";
+  static const String bookingDetail = "/account/get-booking/{id}";
+  static const String bookTurf = "/account/add-booking";
 }

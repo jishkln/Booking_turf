@@ -186,4 +186,6 @@ class HomeViewProvider extends ChangeNotifier {
     }
     log(searchList.length.toString());
   }
+
+  
 }

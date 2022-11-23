@@ -91,12 +91,13 @@ class LocationProvider extends ChangeNotifier {
         .then((List<Placemark> placemarks) {
       Placemark place = placemarks[0];
 
-      currentAddress = ' ${place.subLocality}, ${place.subAdministrativeArea},';
+      currentAddress = ' ${place.subLocality},${place.subAdministrativeArea}';
       currentDistrict = "${place.subAdministrativeArea}";
 
-      // log('geolocation:$currentDistrict'.toString());
+      log('geolocation:$currentDistrict'.toString());
       // ${place.street}, ${place.postalCode},
-      // log('Current: ${place.subLocality}, ${place.subAdministrativeArea},'.toString());
+      log('Current: ${place.subLocality}, ${place.subAdministrativeArea},'
+          .toString());
       locationCurent(context);
       notifyListeners();
     }).catchError((e) {
